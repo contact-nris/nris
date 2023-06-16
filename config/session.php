@@ -157,6 +157,7 @@ return [
     */
 
     'domain' => env('SESSION_DOMAIN', ".nris.com"),
+    // 'domain' => env('SESSION_DOMAIN', NULL),
     //'domain' => ".namasteflavours.ca",
 
     /*

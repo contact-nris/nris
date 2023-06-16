@@ -492,7 +492,7 @@ if (isset(request()->req_state)) {
                         <img  onerror="this.onerror=null;this.src='https://nris.com/stuff/images/default.png';"  class="pro-img" src="{{ auth()->user()->image_url }}" alt="">
                         <?php }?>
                         {{-- <span><i class="fa fa-user-circle"></i></span> --}}
-                        <span class="hide_on_sm pl-1"> Welcome {{ auth()->user()->first_name }}</span> </a>
+                        <span class="hide_on_sm pl-1"> Welcome <?php auth()->user()->first_name; ?> {{ auth()->user()->first_name }}</span> </a>
                         <a class="header-top-button" href="{{ route('front.logout') }}">
                         <i class="fa fa-sign-out"></i><span> Logout </span>
                         </a>
@@ -764,6 +764,11 @@ if (isset(request()->req_state)) {
                         </div>
                         <a href="javascript:void(0)" onclick="forgotpassword()">Forgot your password?</a>
                         <button type="button" class="btn btn-signin btn-common mt-3">Sign In</button>
+
+                        <a href="{{ route('google-login') }}" class="btn btn-google-signin btn-common mt-3">
+                           <i class="fab fa-google fa-fw"></i> Login with Google
+                        </a>
+
                      </form>
                   </div>
                   <div class="overlay-container">

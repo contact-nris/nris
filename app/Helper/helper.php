@@ -474,6 +474,42 @@ function sendCommentAlert($data){
 	return false;
 }
 
+
+function sendCreadentialsAlert($data){
+    // dd($data);
+	$sub_type = 'Creadentials';
+	$name = isset($data['name']) ? $data['name'] : '';
+	$email = isset($data['email']) ? $data['email'] : '';
+	$pass = isset($data['pass']) ? $data['pass'] : '';
+
+	if ($data['email'] ) {
+
+		$content = "<html><body>Hello ". $name ." ,\n<br>Successfully your profile created.. \n<br>Please find your credentials below  \n\n<br>
+		Email = ". $email .",\n<br>
+		password = ". $pass ."
+		</body></html>" ;
+		$subject = "You have a " . $sub_type;
+
+		try {
+
+			
+			$headers = "From: info@nris.com\r\n";
+			$headers .= "MIME-Version: 1.0" . "\r\n"; 
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
+
+            mail($data['email'], $subject, $content, $headers );
+    
+			return true;
+		} catch (\Exception $e) {
+		    dd($e);
+			return $e->getMessage();
+		}
+	}
+	return false;
+}
+
+
+
 function verifyTransaction($data) {
 	global $paypalUrl;
 

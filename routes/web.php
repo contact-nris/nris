@@ -374,8 +374,8 @@ Route::post('/auth-register', 'AuthController@register')->name('front.register')
 Route::get('/get_city', 'Admin\CityController@getByState')->name('front.get_city');
 Route::get('/get_state', 'Admin\StateController@getByCountry')->name('front.get_state');
 
-Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
-Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+Route::get('google-login', 'Auth\GoogleController@redirectToGoogle')->name('google-login');
+Route::any('google-callback', 'Auth\GoogleController@handleGoogleCallback');
 
 Route::get('auth/facebook', 'Auth\FacebookController@redirectToFB');
 Route::get('auth/callback/facebook', 'Auth\FacebookController@handleCallback');

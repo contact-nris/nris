@@ -133,6 +133,7 @@ class AuthController extends Controller {
 
 	public function forgotPassword(Request $request) {
 		$data = $request->all();
+		$verify_id = uniqname();
 
 		$rules = array(
 			'email' => 'required|email|exists:users',

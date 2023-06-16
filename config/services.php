@@ -30,13 +30,23 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+
     'google' => [
-        'client_id' => env('GOGGLE_CLIENT_ID'),
-        'client_secret' => env('GOGGLE_CLIENT_SECRET'),
-        'redirect' => 'https://nris.com/auth/google/callback',
+        'client_id' => env('GOOGLE_CLIENT_ID'), //USE FROM Google DEVELOPER ACCOUNT
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'), //USE FROM Google DEVELOPER ACCOUNT
+        'redirect' => env('GOOGLE_CLIENT_REDIRECT_URL'), // UPDATE THIS URL IN THE GOOGLE DEVELOPER CONSOLE
+    ],
+    
+
+    // 'google' => [
+    //     'client_id' => env('GOGGLE_CLIENT_ID'),
+    //     'client_secret' => env('GOGGLE_CLIENT_SECRET'),
+    //     'redirect' => 'https://nris.com/auth/google/callback',
                 
         
-    ],
+    // ],
+
+
 
     'facebook' => [
         'client_id' => '537995398252624',
