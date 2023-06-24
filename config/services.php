@@ -1,5 +1,38 @@
 <?php
 
+    $host 							= $_SERVER['HTTP_HOST'];
+
+    $data 							= explode(".",$host);
+    $url 							= $data[0];
+
+
+    $redirected_url = $twitterRedirected_url = '/';
+    if(str_contains($url, 'canada'))
+    {
+        $redirected_url = 'https://canada.nris.com/google-callback/';
+        $twitterRedirected_url = 'https://canada.nris.com/twitter-callback/';
+    }
+    else if(str_contains($url, 'australia'))
+    {
+        $redirected_url = 'https://australia.nris.com/google-callback/';
+        $twitterRedirected_url = 'https://australia.nris.com/twitter-callback/';
+    }			
+    else if(str_contains($url, 'uk'))
+    {
+        $redirected_url = 'https://uk.nris.com/google-callback/';
+        $twitterRedirected_url = 'https://uk.nris.com/twitter-callback/';
+    }
+    else if(str_contains($url, 'newzealand'))
+    {
+        $redirected_url = 'https://newzealand.nris.com/google-callback/';
+        $twitterRedirected_url = 'https://newzealand.nris.com/twitter-callback/';
+    }
+    else
+    {
+        $redirected_url = 'https://nris.com/google-callback/';
+        $twitterRedirected_url = 'https://nris.com/twitter-callback/';
+    }
+
 return [
 
     /*
@@ -34,24 +67,19 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'), //USE FROM Google DEVELOPER ACCOUNT
         'client_secret' => env('GOOGLE_CLIENT_SECRET'), //USE FROM Google DEVELOPER ACCOUNT
-        'redirect' => env('GOOGLE_CLIENT_REDIRECT_URL'), // UPDATE THIS URL IN THE GOOGLE DEVELOPER CONSOLE
+        'redirect' => $redirected_url, // UPDATE THIS URL IN THE GOOGLE DEVELOPER CONSOLE
     ],
     
-
-    // 'google' => [
-    //     'client_id' => env('GOGGLE_CLIENT_ID'),
-    //     'client_secret' => env('GOGGLE_CLIENT_SECRET'),
-    //     'redirect' => 'https://nris.com/auth/google/callback',
-                
-        
-    // ],
-
-
-
     'facebook' => [
-        'client_id' => '537995398252624',
-        'client_secret' => 'f2ce4ba6f3f7af4cdfb006aa9fcda2d0',
-        'redirect' => 'https://nris.com/auth/facebook/callback',
+        'client_id' => env('FB_CLIENT_ID'), //USE FROM Facebook DEVELOPER ACCOUNT
+        'client_secret' => env('FB_CLIENT_SECRET'), //USE FROM Facebook DEVELOPER ACCOUNT
+        'redirect' => env('FB_CLIENT_REDIRECT_URL'),
+    ],
+
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => $twitterRedirected_url, //env('TWITTER_CLIENT_REDIRECT_URL'),
     ],
 
 ];

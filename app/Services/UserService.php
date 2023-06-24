@@ -124,4 +124,83 @@ class UserService
 
 
 
+
+
+    /* Twiiter Code */
+
+    public function getUserByTwitterId($param)
+    {
+        $return[$this->status]              = false;
+        $return[$this->message]             = 'Oops, something went wrong...';
+        $return[$this->code]                = 201;
+        $return[$this->data]                = [];
+
+        if($param['twitter_id'] != '' && !empty($param['twitter_id']))
+        {
+
+            $getUser                        = User::where('twitter_id', $param['twitter_id'])->first();
+
+            if($getUser)
+            {
+
+                
+                $return[$this->status]      = true;
+                $return[$this->message]     = 'Successfully user found...';
+                $return[$this->code]        = 200;
+                $return[$this->data]        = $getUser;
+
+            }
+            else
+            {
+                $return[$this->status]      = false;
+                $return[$this->message]     = 'User not found...';
+                $return[$this->code]        = 404;
+            }
+        }
+       
+        return $return;
+        
+    }
+
+
+    
+
+
+
+
+    public function updateUserTwitterIdById($param)
+    {
+        $return[$this->status]              = false;
+        $return[$this->message]             = 'Oops, something went wrong...';
+        $return[$this->code]                = 201;
+        $return[$this->data]                = [];
+
+        if($param['id'] != '' && !empty($param['id']))
+        {
+
+            $updateSt                       = User::where('id',$param['id'])
+                    ->take(1)
+                    ->update(['twitter_id' => $param['twitter_id']]);
+        
+            if($updateSt)
+            {
+                $return[$this->status]      = true;
+                $return[$this->message]     = 'Successfully twitter id updated...';
+                $return[$this->code]        = 200;
+                $return[$this->data]        = [];
+                
+            }
+            else
+            {
+                $return[$this->status]      = false;
+                $return[$this->message]     = 'Oops, some problem occure while update, Please try again...';
+                $return[$this->code]        = 201;
+                $return[$this->data]        = [];
+            }
+        }
+       
+        return $return;        
+        
+    }
+
 }

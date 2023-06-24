@@ -10,7 +10,8 @@ use Exception;
 use Hash;
 use Socialite;
  
-class GoogleController extends Controller {
+class TwitterController extends Controller {
+
 
 
     public function __construct()
@@ -19,17 +20,21 @@ class GoogleController extends Controller {
         $this->message                      = 'message';
         $this->code                         = 'status_code';
         $this->data                         = 'data';        
+        $this->medium                       = 'twitter';        
 
 		$this->userService 					= new UserService();
     }
     
 
 
-	public function redirectToGoogle() {
-		return Socialite::driver('google')->redirect();
+	public function redirectToTwitter() {
+		return Socialite::driver($this->medium)->redirect();
 	}
 
-	public function handleGoogleCallback() {
+	public function handleCallback() {
+		
+		$user 								= Socialite::driver($this->medium)->user();
+
 		try {
 			$host 							= $_SERVER['HTTP_HOST'];
 
@@ -39,42 +44,41 @@ class GoogleController extends Controller {
 			$redirected_url = '/';
 			if(str_contains($url, 'canada'))
 			{
-				$redirected_url = 'https://canada.nris.com/';
+				$redirected_url 			= 'https://canada.nris.com/';
 			}
 			else if(str_contains($url, 'australia'))
 			{
-				$redirected_url = 'https://australia.nris.com/';
+				$redirected_url 			= 'https://australia.nris.com/';
 			}			
 			else if(str_contains($url, 'uk'))
 			{
-				$redirected_url = 'https://uk.nris.com/';				
+				$redirected_url			 	= 'https://uk.nris.com/';				
 			}
 			else if(str_contains($url, 'newzealand'))
 			{
-				$redirected_url = 'https://newzealand.nris.com/';
+				$redirected_url 			= 'https://newzealand.nris.com/';
 			}
 			else
 			{
-				$redirected_url = '/';
+				$redirected_url 			= '/';
 			}
 
-			$user 							= Socialite::driver('google')->stateless()->user();
 			$param['email']					= $user->email;
-			$param['google_id']				= $user->id;
+			$param['twitter_id']	     	= $user->id;
 			
 			$existingEmailUser				= $this->userService->getUserByEmailId($param);
 			
 			if(!$existingEmailUser[$this->status])
 			{
-				$existingUser 					= $this->userService->getUserByGoogleId($param);
+				$existingUser 					= $this->userService->getUserByTwitterId($param);
 				
 				if(!$existingUser[$this->status])
 				{
-					$finalName = str_replace(' ', '', $user->user['given_name'] ?? $user->name);
+					$finalName = str_replace(' ', '', $user->user['nickname'] ?? $user->name);
 					$newUser = new User();
 								
-					$newUser->first_name 		= $user->user['given_name'] ?? $user->name;
-					$newUser->last_name 		= $user->user['family_name'] ?? $user->name;
+					$newUser->first_name 		= $user->user['name'] ?? $user->name;
+					$newUser->last_name 		= $user->user['nickname'] ?? $user->nickname;
 					$newUser->email 			= $user->email;
 					$newUser->password 			= Hash::make($finalName.'@'.$user->id);
 					$newUser->dob 				= '0000-00-00';
@@ -87,14 +91,13 @@ class GoogleController extends Controller {
 						'email' => $user->email,
 						'pass' => $finalName.'@'.$user->id,
 						'type' => 'Creadentials',
-						'name' => $user->user['given_name'] . $user->user['family_name'],
+						'name' => $user->user['name'] . $user->user['nickname'],
 						'sub_type' => 'Creadentials || Register Email Address',
 					);
 					sendCreadentialsAlert($mail_data);
 
 					Auth::login($newUser);
 					\Session::flash('success', 'Successfully Profile Created.');
-					// return redirect('/');
 					return redirect($redirected_url);
 				}
 
@@ -104,10 +107,10 @@ class GoogleController extends Controller {
 			}
 			else
 			{
-				if(!empty($existingEmailUser[$this->data]->google_id) || $existingEmailUser[$this->data]->google_id == '')
+				if(!empty($existingEmailUser[$this->data]->twitter_id) || $existingEmailUser[$this->data]->twitter_id == '')
 				{
 					$param['id']				= $existingEmailUser[$this->data]->id;
-					$updateGoogleId 			= $this->userService->updateUserGoogleIdById($param);
+					$updateGoogleId 			= $this->userService->updateUserTwitterIdById($param);
 				}
 			
 				Auth::login($existingEmailUser[$this->data]);
@@ -119,7 +122,7 @@ class GoogleController extends Controller {
 		} catch (Exception $e) {
 			echo "CATCH";
 			echo "<pre>";
-			print_r($e);
+			print_r($e->getMessage());
 			echo "</pre>";
 			dd($e->getMessage());
 		}

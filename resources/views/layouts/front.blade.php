@@ -492,7 +492,7 @@ if (isset(request()->req_state)) {
                         <img  onerror="this.onerror=null;this.src='https://nris.com/stuff/images/default.png';"  class="pro-img" src="{{ auth()->user()->image_url }}" alt="">
                         <?php }?>
                         {{-- <span><i class="fa fa-user-circle"></i></span> --}}
-                        <span class="hide_on_sm pl-1"> Welcome <?php auth()->user()->first_name; ?> {{ auth()->user()->first_name }}</span> </a>
+                        <span class="hide_on_sm pl-1"> Welcome {{ auth()->user()->first_name }}</span> </a>
                         <a class="header-top-button" href="{{ route('front.logout') }}">
                         <i class="fa fa-sign-out"></i><span> Logout </span>
                         </a>
@@ -576,6 +576,7 @@ if (isset(request()->req_state)) {
                            --}}
                            <li><a href="{{ route('front.aboutus') }}">- About Us</a></li>
                            <li><a href="{{ route('front.termscondition') }}">- Terms & Conditions</a></li>
+                           <li><a href="{{ route('front.privacy') }}">- Privacy</a></li>
                            <li><a href="{{ route('front.disclaimer') }}">- Disclaimer</a></li>
                            <li><a href="{{ route('front.advertising') }}">- Advertise</a></li>
                            <li><a href="mailto:nris@gmail.com">- Contact</a></li>
@@ -768,6 +769,9 @@ if (isset(request()->req_state)) {
                         <a href="{{ route('google-login') }}" class="btn btn-google-signin btn-common mt-3">
                            <i class="fab fa-google fa-fw"></i> Login with Google
                         </a>
+                        <a href="{{ route('facebook-login') }}" class="btn btn-google-signin btn-common mt-3">
+                           <i class="fab fa-facebook fa-fw"></i> Login with facebook
+                        </a>
 
                      </form>
                   </div>
@@ -802,6 +806,9 @@ if (isset(request()->req_state)) {
                            <h1 class="text-white">Hello, Friend!</h1>
                            <p class="text-white-50">Enter your personal details and start journey with us</p>
                            <button class="btn btn-common mt-3" id="signUp">Sign Up</button>
+                           <a href="{{ route('twitter-login') }}" class="btn btn-google-signin btn-common mt-3">
+                              <i class="fab fa-twitter fa-fw"></i> Login with Twitter
+                           </a>
                            <!--<div class="row mt-3">-->
                            <!--   <div class="col-12" >-->
                            <!--      <h5 class="mb-3 text-light" style="font-size: 20px">Sign In With</h5>-->
@@ -1007,7 +1014,7 @@ if (isset(request()->req_state)) {
          })
       </script>
       <?php }?>
-      <!-- <div id="live-chat">
+      <div id="live-chat">
          <header class="clearfix">
              <a href="#" class="chat-close">x</a>
              <h4>John Doe</h4>
@@ -1054,7 +1061,7 @@ if (isset(request()->req_state)) {
                  </fieldset>
              </form>
          </div>
-         </div> -->
+      </div> 
       <div id="state-selection" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content m-t-124">

@@ -24,7 +24,11 @@ class FacebookController extends Controller {
 	 * @return void
 	 */
 	public function handleCallback() {
-		echo "gfhbvhntggdfr1325467897";die;
+		echo "HETRE";
+		echo "<br>";
+		echo "gfhbvhntggdfr1325467897";
+		die();
+
 		try {
 
 			$user = Socialite::driver('facebook')->user();

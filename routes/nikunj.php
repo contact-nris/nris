@@ -116,6 +116,8 @@ Route::get('/aboutus', 'AboutUsController@index')->name('front.aboutus');
 
 Route::get('/terms_conditions', 'TermsConditionController@index')->name('front.termscondition');
 
+Route::get('/privacy', 'PrivacyController@index')->name('front.privacy');
+
 Route::get('/disclaimer', 'DisclaimerController@index')->name('front.disclaimer');
 
 Route::get('/advertising', 'AdvertisingController@index')->name('front.advertising');

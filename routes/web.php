@@ -377,8 +377,11 @@ Route::get('/get_state', 'Admin\StateController@getByCountry')->name('front.get_
 Route::get('google-login', 'Auth\GoogleController@redirectToGoogle')->name('google-login');
 Route::any('google-callback', 'Auth\GoogleController@handleGoogleCallback');
 
-Route::get('auth/facebook', 'Auth\FacebookController@redirectToFB');
-Route::get('auth/callback/facebook', 'Auth\FacebookController@handleCallback');
+Route::get('facebook-login', 'Auth\FacebookController@redirectToFB')->name('facebook-login');
+Route::get('facebook-callback', 'Auth\FacebookController@handleCallback');
+
+Route::get('twitter-login', 'Auth\TwitterController@redirectToTwitter')->name('twitter-login');
+Route::get('twitter-callback', 'Auth\TwitterController@handleCallback');
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::get('/profile', 'ProfileController@index')->name('front.profile');
