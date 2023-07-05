@@ -59,7 +59,7 @@
                             </div>
                         </ul>
                         <div class="mb-4">
-                            {{$blog->description}}
+                            {!! $blog->description !!}
                         </div>
                     </div>
                     <div class="tag-bottom">

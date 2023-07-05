@@ -227,8 +227,7 @@ class HomeController extends Controller {
 			$expiresAt = Carbon::now()->addMinutes(1000);
 
 			if ($request->req_state) {
-				// print_r( $request->req_state);
-
+				
 				// exit;
 				$data['s_info'] = State::select('s_meta_title as meta_title', 's_meta_description as meta_description', 's_meta_keywords as meta_keywords')->where('domain', $request->req_state['domain'])->firstOrFail();
 				$data['meta_tags'] = array(
@@ -362,12 +361,13 @@ class HomeController extends Controller {
 		$data['pubs_category'] = \App\PubType::all();
 		$data['theater_category'] = \App\TheaterType::all();
 
-		if ($s_code) {
-			$data['gif_data']['Left'] = array();
-		}
+		// if ($s_code) {
+		// 	$data['gif_data']['Left'] = array();
+		// }
 
 		ksort($data['gif_data']['Top']);
 		ksort($data['gif_data']['Right']);
+		ksort($data['gif_data']['Left']);
 
 // echo "<pre>";
 // print_R($data['gif_data']);

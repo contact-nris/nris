@@ -767,10 +767,10 @@ if (isset(request()->req_state)) {
                         <button type="button" class="btn btn-signin btn-common mt-3">Sign In</button>
 
                         <a href="{{ route('google-login') }}" class="btn btn-google-signin btn-common mt-3">
-                           <i class="fab fa-google fa-fw"></i> Login with Google
+                           <i class="fa fa-google fa-fw"></i> Login with Google
                         </a>
                         <a href="{{ route('facebook-login') }}" class="btn btn-google-signin btn-common mt-3">
-                           <i class="fab fa-facebook fa-fw"></i> Login with facebook
+                           <i class="fa fa-facebook fa-fw"></i> Login with facebook
                         </a>
 
                      </form>
@@ -807,7 +807,7 @@ if (isset(request()->req_state)) {
                            <p class="text-white-50">Enter your personal details and start journey with us</p>
                            <button class="btn btn-common mt-3" id="signUp">Sign Up</button>
                            <a href="{{ route('twitter-login') }}" class="btn btn-google-signin btn-common mt-3">
-                              <i class="fab fa-twitter fa-fw"></i> Login with Twitter
+                              <i class="fa fa-twitter fa-fw"></i> Login with Twitter
                            </a>
                            <!--<div class="row mt-3">-->
                            <!--   <div class="col-12" >-->

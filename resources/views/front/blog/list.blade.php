@@ -4,7 +4,7 @@
 
 
 <?php
-$list_box['data'] = array('name' => 'Blog', 'href' => route('front.blog.from'), 'create' => 1, 'type' => 'small');
+$list_box['data'] = array('name' => 'Blog', 'href' => route('front.blog.from'), 'create' => 0, 'type' => 'small');
 ?>
 @include('layouts.listbox')
 
@@ -74,9 +74,9 @@ $list_box['data'] = array('name' => 'Blog', 'href' => route('front.blog.from'), 
                                                         {{ date_with_month($list->created_at) }}</a>
                                                 </span>
                                             </div>
-                                            <div class="dsc">
+                                            <!-- <div class="dsc">
                                                 {{ $list->short_desc }}
-                                            </div>
+                                            </div> -->
 
                                             <div class="listing-bottom">
                                                 <div class="d-flex align-items-center justify-content-between">

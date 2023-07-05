@@ -37,8 +37,9 @@ class BlogController extends Controller {
 		$data = $request->all();
 		$blog = Blog::findOrNew($id);
 		$rules = array(
-			'title' => 'required|min:2|max:120|unique:blogs,title',
+			'title' => 'required|min:2|max:120',
 			'description' => 'required',
+			'category_id' => 'required',
 		);
 
 		$json = array();
@@ -68,6 +69,7 @@ class BlogController extends Controller {
 			$blog->category_id = $request->category_id;
 			$blog->image = $request->image;
 			$blog->status = (int) $request->status;
+			$blog->visibility = $request->visibility;
 
 			$blog->meta_title = $request->meta_title;
 			$blog->meta_description = $request->meta_description;

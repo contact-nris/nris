@@ -89,16 +89,16 @@ class OtherController extends Controller {
 		return view('admin.other_classified.form', $data);
 	}
 
-	function get_uniq_slug($title) {
-		$num = 1;
-		$a = 1;
-		while ($num > 0) {
-			$txt = $this->clean($title . $a++);
-			$num = Other::where('url_slug', $txt)->count();
-		}
-		$a = $a - 1;
-		return $title . '-' . $a;
-	}
+	// function get_uniq_slug($title) {
+	// 	$num = 1;
+	// 	$a = 1;
+	// 	while ($num > 0) {
+	// 		$txt = $this->clean($title . $a++);
+	// 		$num = Other::where('url_slug', $txt)->count();
+	// 	}
+	// 	$a = $a - 1;
+	// 	return $title . '-' . $a;
+	// }
 
 	public function submitForm(Request $request, $id = 0) {
 		$data = $request->all();

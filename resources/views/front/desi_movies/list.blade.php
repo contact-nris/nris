@@ -43,7 +43,7 @@
                                                 <div class="listing-bottom">
                                                     <div class="d-flex justify-content-between">
                                                         <div>City: {{ $list->city_name }}</div>
-                                                        <div>Views: {{ date('d F Y', strtotime($list->date)) }}</div>
+                                                        <div>Views: {{ date('d F Y', strtotime($list->updated_at)) }}</div>
                                                     </div>
                                                 </div>
                                             </div>

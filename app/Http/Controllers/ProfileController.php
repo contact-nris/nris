@@ -190,6 +190,11 @@ class ProfileController extends Controller {
 				foreach ($r_data as $k => $val) {
 					$r_data[$k]['type'] = $key;
 					$r_data[$k]['slug'] = slug($val['title'] . '-' . $val['id']);
+					if($r_data[$k]['type'] == 'post_free_job' || $r_data[$k]['type'] == 'post_free_real_estate')
+					{
+						$r_data[$k]['slug'] = slug($val['title']);
+					}
+					
 					$r_data[$k]['view_route'] = $view_routes[$key]['view'];
 					$r_data[$k]['edit_route'] = $view_routes[$key]['edit'];
 					$r_data[$k]['delete_route'] = $view_routes[$key]['delete'];
@@ -203,6 +208,7 @@ class ProfileController extends Controller {
 		// echo '<pre>';
 		// print_r($data['search_data']);
 		// echo '</pre>';
+		// die();
 		return view('front.profile.my_ads', $data);
 	}
 

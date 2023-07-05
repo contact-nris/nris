@@ -52,19 +52,21 @@
                     </select>
                   </div>
                 </div>
-                <div class="col">
+                <!--<div class="col">
                   <div class="form-group">
                     <label class="control-label">City</label>
-                    <select type="text" name="city_id" class="form-control city-container"><?php if ($desipage->city_id) {
-	echo ' <option value="' . $desipage->city_id . '">' . get_city($desipage->city_id) . '</option>';
-} else {?>
+                    <select type="text" name="city_id" class="form-control city-container">
+                      <?php // if ($desipage->city_id) {
+	//echo ' <option value="' . $desipage->city_id . '">' . get_city($desipage->city_id) . '</option>';
+//} else {
+  ?>
                       <option value="">Choose City</option>
-                      <?php }?></select>
+                      <?php //} ?></select>
                     <script type="text/javascript">
                       fillCity(' < ? = $event - > state_code ? > ','.city - container ', < ? = (int) $event - > city_id ? > )
                     </script>
                   </div>
-                </div>
+                </div>-->
               </div>
 
               <div class="row">

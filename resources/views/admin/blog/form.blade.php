@@ -17,13 +17,13 @@
                 <div class="col">
                   <div class="form-group">
                     <label class="control-label">Blog Title</label>
-                    <input type="text" name="title" autofocus="" class="form-control" value="{{ $blog->title }}">
+                    <input type="text" name="title" autofocus="" class="form-control" value="{{ $blog->title }}" require>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <label class="control-label">Blog URL</label>
-                    <input type="text" name="url" autofocus="" class="form-control" value="{{ $blog->url }}">
+                    <input type="text" name="url" autofocus="" class="form-control" value="{{ $blog->url }}" require>
                   </div>
                 </div>
               </div>
@@ -35,8 +35,8 @@
                 <div class="col">
                   <div class="form-group">
                     <label class="control-label">Category</label>
-                    <select type="text" name="category_id" class="form-control">
-                      <option value="">Choose State</option> <?php foreach (\App\BlogCategory::all() as $key => $cate) {?> <option <?=$cate->id == $blog->category_id ? 'selected' : ''?> value="
+                    <select type="text" name="category_id" class="form-control" required>
+                      <option value="">Select Category</option> <?php foreach (\App\BlogCategory::all() as $key => $cate) {?> <option <?=$cate->id == $blog->category_id ? 'selected' : ''?> value="
 														<?=$cate->id?>"> <?=$cate->name?> </option> <?php }?>
                     </select>
                   </div>
@@ -44,7 +44,8 @@
                 <div class="col">
                   <div class="form-group">
                     <label class="control-label">Visibility</label>
-                    <select type="text" name="status" class="form-control">
+                    <select type="text" name="visibility" class="form-control">
+                      <option value="">Choose Visibility</option>
                       <option <?=$blog->visibility == 'Public' ? 'selected' : ''?> value="Public">Public </option>
                       <option <?=$blog->visibility == 'Private' ? 'selected' : ''?> value="Private">Private </option>
                     </select>
