@@ -132,7 +132,9 @@ class AuthController extends Controller {
 	}
 
 	public function forgotPassword(Request $request) {
+		
 		$data = $request->all();
+
 		$verify_id = uniqname();
 
 		$rules = array(
@@ -146,28 +148,55 @@ class AuthController extends Controller {
 			return $json;
 		}
 
-		$status = Password::sendResetLink(
-			$request->only('email')
-		);
-
 		$mail_data = array(
-			'link' => url("verifyemail/" . $verify_id),
+			'link' => url("change-forgot-password/" . base64_encode($request->email)),
 			'email' => $request->email,
-			'type' => 'Verification',
+			'type' => 'ForgotPassword',
 			'name' => $request->first_name . $request->last_name,
 			'sub_type' => 'Forgot Password',
 		);
 		sendCommentAlert($mail_data);
 
-		if ($status === Password::RESET_LINK_SENT) {
 			\Session::flash('success', 'A reset link has been sent to your email address.');
 			$json['reload'] = true;
-		} else {
-			$json['errors']['email'] = $status;
-		}
 
 		return $json;
 	}
+
+	public function changeForgotPassword(Request $request) {
+
+		$data = [];
+		$email = $request->email;
+
+		$data = [
+				
+				'email' => $email
+		];
+		
+		return view('front.forgot-pass-change', $data);
+
+	}
+
+	public function submitResetForgotPasswordForm(Request $request)
+	{
+		$data = $request->all();
+		$data['email'] = base64_decode($request->email);
+
+		$request->validate([
+			'password' => 'required|string|min:6|confirmed',
+			'password_confirmation' => 'required'
+		]);
+
+		$user = User::where('email', $data['email'])
+					->update(['password' => Hash::make($request->password)]);
+
+
+		return redirect('/')->with('message', 'Your password has been changed!');
+	}
+
+
+
+
 
 	public function resetPassword(Request $request) {
 		$data = $request->all();

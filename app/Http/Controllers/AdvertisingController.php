@@ -68,7 +68,8 @@ class AdvertisingController extends Controller {
 			$advertising->save();
 			$mail_data = array(
 				'link' => $request->web_link,
-				'email' => 'venky@skyhitmedia.com',
+				'email' => 'venky@skyhitmedia.com, mailnris@gmail.com',
+				// 'email' => 'info@nris.com, mdsaddamhussain595@gmail.com',
 				'type' => 'Advertise-nris',
 				'name' => 'Venky',
 				'sub_type' => "Add New Advertise added in NRIS.COM",

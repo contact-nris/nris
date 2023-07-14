@@ -316,6 +316,10 @@ function sendCommentAlert($data){
 			$content = "<html><body>Hello ". $name ." ,\n<br>If you click the Verify Email Address your account will get verified.". $data['link'] . "</body></html>" ;
 			$subject = "You have a Register on your " . $data['type'] . " Email Address";
 		}
+		elseif ($data['type'] == 'ForgotPassword') {
+			$content = "<html><body>Hello ". $name ." ,\n<br>Click the Url to reset the password.". $data['link'] . "</body></html>" ;
+			$subject = "You have a Register on your " . $data['type'] . " Email Address";
+		}
 		elseif ($data['type'] == 'Advertise') {
 			$content = "<html><body>Hello ". $name ." ,\n<br>You have a ". $sub_type ." on your " . $data['type'] . " post. \n\n<br><br>  " . $sub_type . "</body></html>" ;
 			$subject = $sub_type . " on your " . $data['type'] . " post";
@@ -506,6 +510,13 @@ function sendCreadentialsAlert($data){
 		}
 	}
 	return false;
+}
+
+
+
+function displayDotDot($str){   
+	$string = mb_strimwidth($str, 0, 65, "...");
+	return $string;
 }
 
 

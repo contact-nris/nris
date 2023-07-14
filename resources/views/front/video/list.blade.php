@@ -147,7 +147,8 @@
                                                             src="https://img.youtube.com/vi/{{ $list->video_id }}/0.jpg"
                                                             alt="{{ $list->title }}"></a>
                                                     <div class="black_section">
-                                                        <h4 class='responsive_text text-white'>{{ $list->title }}</h4>
+                                                        <!-- <h4 class='responsive_text text-white'>{{ $list->title }}</h4> -->
+                                                        <h4 class='responsive_text text-white'>{!! displayDotDot( $list->title ) !!}</h4>
                                                         <div>
                                                             @include('layouts.list_like', [
                                                                 'model' => 'video',

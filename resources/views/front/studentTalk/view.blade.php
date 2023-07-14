@@ -33,8 +33,20 @@
                             <span><a href="#"><i class="fa fa-user"></i>
                                     {{ $student->user }}</a></span>
                             </a></span>
+                            <span><a href="#"><i class="fa fa-envelope"></i>
+                                    {{ $student->email ?? 'NA' }}</a></span>
+                            </a></span>
+                            <span><a href="#"><i class="fa fa-mobile"></i>
+                                    {{ $student->phone ?? 'NA' }}</a></span>
+                            </a></span>
                             <!-- <span><a href="javascript:void(0)"><i class="fa fa-eye"></i> {{$student->total_views}}</a></span> -->
                             <!-- <span><a href="javascript:void(0)"><i class="fa fa-list"></i> {{$student->sub_cate}}</a></span> -->
+                        </div>
+                        <div class="details-meta">
+                            <span><a href="#"><i class="fa fa-address-card"></i>
+                                    {{ $student->address ?? 'NA' }}</a></span>
+                            </a></span>
+                            
                         </div>
 
                         <div class="mb-4 description">{!! $student->message !!}</div>
@@ -87,7 +99,7 @@ $list = $student;
 $list->more_ads = 1;
 
 ?>
-                    @include('layouts.add_post')
+                    
         </div>
     </div>
 

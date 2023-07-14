@@ -103,7 +103,7 @@ $list->iframe = 1;
 $list->hours = 1;
 $list->add_model = 'f_casinos';
 ?>
-                 @include('layouts.add_post')
+                 <!-- @include('layouts.add_post') -->
 
 
         </div>

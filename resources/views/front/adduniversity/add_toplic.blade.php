@@ -35,6 +35,30 @@
                                         <input type="text" name="title" placeholder="Title"
                                             class="form-control form-control-lg">
                                     </div>
+                                    <div class="col-12 col-md-6 mb-md-0 mb-3">
+                                        <input type="text" name="email" placeholder="E-mail"
+                                            class="form-control form-control-lg">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 mb-md-0 mb-3">
+                                        <input type="mobile" name="mobile" placeholder="Mobile No"
+                                            class="form-control form-control-lg">
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-md-0 mb-3">
+                                        <select class="form-control" name="topic_type">
+                                            <option value="">Select Type</option>
+                                            <option value="Accommodation">Accommodation</option>
+                                            <option value="CampusJobs">Campus Jobs</option>
+                                            <option value="AssignmentHelp">Assignment Help</option>
+                                            <option value="OtherTopics">Other Topics</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 mb-md-0 mb-3">
+                                        <textarea name="address" placeholder="Address" class="form-control form-control-lg mt-3" rows="3"></textarea>
+                                    </div>
                                     <div class="col-12 col-md-6 mb-3">
                                         {{-- <input type="text" name="uni_name" placeholder="University Name" class="form-control form-control-lg"> --}}
                                         <select class="form-control" name="uni_name" id="">
@@ -44,15 +68,9 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-12 col-md-12">
-                                        <select class="form-control" name="topic_type">
-                                            <option value="">Seletc Type</option>
-                                            <option value="Accommodation">Accommodation</option>
-                                            <option value="CampusJobs">Campus Jobs</option>
-                                            <option value="AssignmentHelp">Assignment Help</option>
-                                            <option value="OtherTopics">Other Topics</option>
-                                        </select>
-                                    </div>
+                                    
+                                </div>
+                                <div class="row">
                                     <div class="col-12">
                                         <textarea name="topic_body" placeholder="Message" class="form-control form-control-lg mt-3" rows="3"></textarea>
                                     </div>

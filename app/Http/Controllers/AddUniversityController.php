@@ -99,6 +99,8 @@ class AddUniversityController extends Controller {
 			'title' => 'required',
 			'uni_name' => 'required',
 			'topic_type' => 'required',
+			'email' => 'required|email',
+			'mobile' => 'required',
 			'topic_body' => 'required|min:5',
 		);
 
@@ -107,11 +109,15 @@ class AddUniversityController extends Controller {
 		if ($validator->fails()) {
 			$json['errors'] = api_error_format($validator->errors()->messages());
 		} else {
+			
 			$uni_topic = new Uni_Studenttalk();
 			$uni_topic->university_id = $request->uni_name;
 			$uni_topic->state_code = $request->req_state['code'];
 			$uni_topic->user_id = Auth::user()->id;
-			$uni_topic->title = $request->title;
+			$uni_topic->title = $request->title; 
+			$uni_topic->email = $request->email ?? null;
+			$uni_topic->phone = $request->mobile ?? null;
+			$uni_topic->address = $request->address ?? null;
 			$uni_topic->message = $request->topic_body;
 			$uni_topic->type = $request->topic_type;
 			$uni_topic->save();

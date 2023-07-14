@@ -170,6 +170,8 @@ Route::get('/getCreateAdUrl/{slug?}/{slug1?}/{slug2?}', 'HomeController@getCreat
 
 Route::post("send-email", 'MailerController@composeEmail')->name("send-email");
 
+Route::get('/change-forgot-password/{email}', 'AuthController@changeForgotPassword')->name('front.forgotpassword-view');
+Route::post('/update-forgot-password', 'AuthController@submitResetForgotPasswordForm')->name('change.forgot.password');
 Route::post('/auth-forgotpassword', 'AuthController@forgotPassword')->name('front.forgotpassword');
 Route::post('/auth-password/reset-submit', 'AuthController@resetPassword')->name('front.password_reset_submit');
 Route::get('students_talk/{id}', 'AddUniversityController@view')->name('adduniversity.view');

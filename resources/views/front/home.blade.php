@@ -75,6 +75,15 @@ if (in_array($url, $n)) {$sd = 1;} else { $sd = 0;}
     transform: rotate(-360deg);
   }
 }
+
+
+.rtl-scroll .owl-nav button.owl-prev {
+  float: right;
+}
+
+.rtl-scroll .owl-nav button.owl-next {
+  float: left;
+}
 </style>
 
     <script type="text/javascript" src="{{ url('front/slider/js/lightslider.min.js') }}"></script>
@@ -744,7 +753,7 @@ if (count($value)) {
         <div class="container">
             <h2 class="section-title mb-0 p-0">News Video</h2>
             <div class="row">
-                <div id="video_carousal" class="owl-carousel owl-theme owl-loaded owl-drag">
+                <div id="video_carousal" class="owl-carousel owl-theme owl-loaded owl-drag rtl-scroll">
                     <?php
                     // echo "<pre>";
                     // print_R($newsvideo_carousal );
